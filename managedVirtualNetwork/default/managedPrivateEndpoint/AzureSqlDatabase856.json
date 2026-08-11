@@ -1,0 +1,7 @@
+{
+	"name": "AzureSqlDatabase856",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/ea35098f-3915-43e2-b0c1-22aae608551f/resourceGroups/azurefundamentals/providers/Microsoft.Sql/servers/apontraining",
+		"groupId": "sqlServer"
+	}
+}

@@ -1,0 +1,15 @@
+{
+	"name": "aponADF",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "eastasia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "07b52fe4-8b9d-4efb-bdc9-36883d20a290",
+		"tenantId": "5f86736b-ef43-4992-9624-06dc6eeaf097"
+	}
+}

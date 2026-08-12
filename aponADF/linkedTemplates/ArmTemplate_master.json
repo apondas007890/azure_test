@@ -1,0 +1,238 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "aponADF"
+		},
+		"ADLSg2_LS_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ADLSg2_LS'"
+		},
+		"AdventureWorksSQLDB_LS_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'AdventureWorksSQLDB_LS'"
+		},
+		"AzureSqlDatabaseMPE_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'AzureSqlDatabaseMPE'"
+		},
+		"AzureSqlDatabase_LS_Test_2_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'AzureSqlDatabase_LS_Test_2'"
+		},
+		"AzureSqlDatabase_LS_test_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'AzureSqlDatabase_LS_test'"
+		},
+		"GenericAzureSQLDB_LS_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'GenericAzureSQLDB_LS'"
+		},
+		"azure_sql_db_ls_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'azure_sql_db_ls'"
+		},
+		"ADLSg2_LS_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://datalakeapondas007890.dfs.core.windows.net/"
+		},
+		"AdventureWorksSQLDB_LS_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "apontraining.database.windows.net"
+		},
+		"AdventureWorksSQLDB_LS_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "AdventureWorks"
+		},
+		"AdventureWorksSQLDB_LS_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "apon00"
+		},
+		"AzureSqlDatabaseMPE_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "apontraining.database.windows.net"
+		},
+		"AzureSqlDatabaseMPE_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "AdventureWorks"
+		},
+		"AzureSqlDatabaseMPE_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "apon00"
+		},
+		"AzureSqlDatabase_LS_Test_2_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "apontraining.database.windows.net"
+		},
+		"AzureSqlDatabase_LS_Test_2_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "AdventureWorks"
+		},
+		"AzureSqlDatabase_LS_Test_2_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "apondas00"
+		},
+		"AzureSqlDatabase_LS_test_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "apontraining.database.windows.net"
+		},
+		"AzureSqlDatabase_LS_test_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "AdventureWorks"
+		},
+		"AzureSqlDatabase_LS_test_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "apondas00"
+		},
+		"GenericAzureSQLDB_LS_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "@{linkedService().serverName}"
+		},
+		"GenericAzureSQLDB_LS_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "@{linkedService().databaseName}"
+		},
+		"GenericAzureSQLDB_LS_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "apon00"
+		},
+		"azure_sql_db_ls_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "@{linkedService().serverName}"
+		},
+		"azure_sql_db_ls_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "@{linkedService().databaseName}"
+		},
+		"azure_sql_db_ls_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "apon00"
+		},
+		"AzureSqlDatabase856_properties_privateLinkResourceId": {
+			"type": "string",
+			"defaultValue": "/subscriptions/ea35098f-3915-43e2-b0c1-22aae608551f/resourceGroups/azurefundamentals/providers/Microsoft.Sql/servers/apontraining"
+		},
+		"AzureSqlDatabase856_properties_groupId": {
+			"type": "string",
+			"defaultValue": "sqlServer"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "aponADF_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"ADLSg2_LS_accountKey": {
+						"value": "[parameters('ADLSg2_LS_accountKey')]"
+					},
+					"AdventureWorksSQLDB_LS_password": {
+						"value": "[parameters('AdventureWorksSQLDB_LS_password')]"
+					},
+					"GenericAzureSQLDB_LS_password": {
+						"value": "[parameters('GenericAzureSQLDB_LS_password')]"
+					},
+					"azure_sql_db_ls_password": {
+						"value": "[parameters('azure_sql_db_ls_password')]"
+					},
+					"AzureSqlDatabaseMPE_password": {
+						"value": "[parameters('AzureSqlDatabaseMPE_password')]"
+					},
+					"AzureSqlDatabase_LS_Test_2_password": {
+						"value": "[parameters('AzureSqlDatabase_LS_Test_2_password')]"
+					},
+					"AzureSqlDatabase_LS_test_password": {
+						"value": "[parameters('AzureSqlDatabase_LS_test_password')]"
+					},
+					"ADLSg2_LS_properties_typeProperties_url": {
+						"value": "[parameters('ADLSg2_LS_properties_typeProperties_url')]"
+					},
+					"AdventureWorksSQLDB_LS_properties_typeProperties_server": {
+						"value": "[parameters('AdventureWorksSQLDB_LS_properties_typeProperties_server')]"
+					},
+					"AdventureWorksSQLDB_LS_properties_typeProperties_database": {
+						"value": "[parameters('AdventureWorksSQLDB_LS_properties_typeProperties_database')]"
+					},
+					"AdventureWorksSQLDB_LS_properties_typeProperties_userName": {
+						"value": "[parameters('AdventureWorksSQLDB_LS_properties_typeProperties_userName')]"
+					},
+					"GenericAzureSQLDB_LS_properties_typeProperties_server": {
+						"value": "[parameters('GenericAzureSQLDB_LS_properties_typeProperties_server')]"
+					},
+					"GenericAzureSQLDB_LS_properties_typeProperties_database": {
+						"value": "[parameters('GenericAzureSQLDB_LS_properties_typeProperties_database')]"
+					},
+					"GenericAzureSQLDB_LS_properties_typeProperties_userName": {
+						"value": "[parameters('GenericAzureSQLDB_LS_properties_typeProperties_userName')]"
+					},
+					"azure_sql_db_ls_properties_typeProperties_server": {
+						"value": "[parameters('azure_sql_db_ls_properties_typeProperties_server')]"
+					},
+					"azure_sql_db_ls_properties_typeProperties_database": {
+						"value": "[parameters('azure_sql_db_ls_properties_typeProperties_database')]"
+					},
+					"azure_sql_db_ls_properties_typeProperties_userName": {
+						"value": "[parameters('azure_sql_db_ls_properties_typeProperties_userName')]"
+					},
+					"AzureSqlDatabase856_properties_privateLinkResourceId": {
+						"value": "[parameters('AzureSqlDatabase856_properties_privateLinkResourceId')]"
+					},
+					"AzureSqlDatabase856_properties_groupId": {
+						"value": "[parameters('AzureSqlDatabase856_properties_groupId')]"
+					},
+					"AzureSqlDatabaseMPE_properties_typeProperties_server": {
+						"value": "[parameters('AzureSqlDatabaseMPE_properties_typeProperties_server')]"
+					},
+					"AzureSqlDatabaseMPE_properties_typeProperties_database": {
+						"value": "[parameters('AzureSqlDatabaseMPE_properties_typeProperties_database')]"
+					},
+					"AzureSqlDatabaseMPE_properties_typeProperties_userName": {
+						"value": "[parameters('AzureSqlDatabaseMPE_properties_typeProperties_userName')]"
+					},
+					"AzureSqlDatabase_LS_Test_2_properties_typeProperties_server": {
+						"value": "[parameters('AzureSqlDatabase_LS_Test_2_properties_typeProperties_server')]"
+					},
+					"AzureSqlDatabase_LS_Test_2_properties_typeProperties_database": {
+						"value": "[parameters('AzureSqlDatabase_LS_Test_2_properties_typeProperties_database')]"
+					},
+					"AzureSqlDatabase_LS_Test_2_properties_typeProperties_userName": {
+						"value": "[parameters('AzureSqlDatabase_LS_Test_2_properties_typeProperties_userName')]"
+					},
+					"AzureSqlDatabase_LS_test_properties_typeProperties_server": {
+						"value": "[parameters('AzureSqlDatabase_LS_test_properties_typeProperties_server')]"
+					},
+					"AzureSqlDatabase_LS_test_properties_typeProperties_database": {
+						"value": "[parameters('AzureSqlDatabase_LS_test_properties_typeProperties_database')]"
+					},
+					"AzureSqlDatabase_LS_test_properties_typeProperties_userName": {
+						"value": "[parameters('AzureSqlDatabase_LS_test_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

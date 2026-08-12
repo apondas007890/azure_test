@@ -1,0 +1,93 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "aponADF"
+		},
+		"ADLSg2_LS_accountKey": {
+			"value": ""
+		},
+		"AdventureWorksSQLDB_LS_password": {
+			"value": ""
+		},
+		"AzureSqlDatabaseMPE_password": {
+			"value": ""
+		},
+		"AzureSqlDatabase_LS_Test_2_password": {
+			"value": ""
+		},
+		"AzureSqlDatabase_LS_test_password": {
+			"value": ""
+		},
+		"GenericAzureSQLDB_LS_password": {
+			"value": ""
+		},
+		"azure_sql_db_ls_password": {
+			"value": ""
+		},
+		"ADLSg2_LS_properties_typeProperties_url": {
+			"value": "https://datalakeapondas007890.dfs.core.windows.net/"
+		},
+		"AdventureWorksSQLDB_LS_properties_typeProperties_server": {
+			"value": "apontraining.database.windows.net"
+		},
+		"AdventureWorksSQLDB_LS_properties_typeProperties_database": {
+			"value": "AdventureWorks"
+		},
+		"AdventureWorksSQLDB_LS_properties_typeProperties_userName": {
+			"value": "apon00"
+		},
+		"AzureSqlDatabaseMPE_properties_typeProperties_server": {
+			"value": "apontraining.database.windows.net"
+		},
+		"AzureSqlDatabaseMPE_properties_typeProperties_database": {
+			"value": "AdventureWorks"
+		},
+		"AzureSqlDatabaseMPE_properties_typeProperties_userName": {
+			"value": "apon00"
+		},
+		"AzureSqlDatabase_LS_Test_2_properties_typeProperties_server": {
+			"value": "apontraining.database.windows.net"
+		},
+		"AzureSqlDatabase_LS_Test_2_properties_typeProperties_database": {
+			"value": "AdventureWorks"
+		},
+		"AzureSqlDatabase_LS_Test_2_properties_typeProperties_userName": {
+			"value": "apondas00"
+		},
+		"AzureSqlDatabase_LS_test_properties_typeProperties_server": {
+			"value": "apontraining.database.windows.net"
+		},
+		"AzureSqlDatabase_LS_test_properties_typeProperties_database": {
+			"value": "AdventureWorks"
+		},
+		"AzureSqlDatabase_LS_test_properties_typeProperties_userName": {
+			"value": "apondas00"
+		},
+		"GenericAzureSQLDB_LS_properties_typeProperties_server": {
+			"value": "@{linkedService().serverName}"
+		},
+		"GenericAzureSQLDB_LS_properties_typeProperties_database": {
+			"value": "@{linkedService().databaseName}"
+		},
+		"GenericAzureSQLDB_LS_properties_typeProperties_userName": {
+			"value": "apon00"
+		},
+		"azure_sql_db_ls_properties_typeProperties_server": {
+			"value": "@{linkedService().serverName}"
+		},
+		"azure_sql_db_ls_properties_typeProperties_database": {
+			"value": "@{linkedService().databaseName}"
+		},
+		"azure_sql_db_ls_properties_typeProperties_userName": {
+			"value": "apon00"
+		},
+		"AzureSqlDatabase856_properties_privateLinkResourceId": {
+			"value": "/subscriptions/ea35098f-3915-43e2-b0c1-22aae608551f/resourceGroups/azurefundamentals/providers/Microsoft.Sql/servers/apontraining"
+		},
+		"AzureSqlDatabase856_properties_groupId": {
+			"value": "sqlServer"
+		}
+	}
+}

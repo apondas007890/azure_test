@@ -1,0 +1,10 @@
+{
+	"name": "AzureKeyVault_LS_datalakeapondas007890",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://DemoKeyVault1apon.vault.azure.net/"
+		}
+	}
+}

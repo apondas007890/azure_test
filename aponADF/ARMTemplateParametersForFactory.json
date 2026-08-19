@@ -11,9 +11,6 @@
 		"AdventureWorksSQLDB_LS_password": {
 			"value": ""
 		},
-		"AzureSqlDatabaseMPE_password": {
-			"value": ""
-		},
 		"AzureSqlDatabase_LS_Test_2_password": {
 			"value": ""
 		},
@@ -38,14 +35,11 @@
 		"AdventureWorksSQLDB_LS_properties_typeProperties_userName": {
 			"value": "apon00"
 		},
-		"AzureSqlDatabaseMPE_properties_typeProperties_server": {
-			"value": "apontraining.database.windows.net"
+		"AzureDataLakeStorage1_LS_properties_typeProperties_url": {
+			"value": "https://datalakeapondas007890.dfs.core.windows.net/"
 		},
-		"AzureSqlDatabaseMPE_properties_typeProperties_database": {
-			"value": "AdventureWorks"
-		},
-		"AzureSqlDatabaseMPE_properties_typeProperties_userName": {
-			"value": "apon00"
+		"AzureKeyVault1_LS_properties_typeProperties_baseUrl": {
+			"value": "https://DemoKeyVault1apon.vault.azure.net/"
 		},
 		"AzureSqlDatabase_LS_Test_2_properties_typeProperties_server": {
 			"value": "apontraining.database.windows.net"

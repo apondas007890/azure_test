@@ -15,18 +15,6 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'AdventureWorksSQLDB_LS'"
 		},
-		"GenericAzureSQLDB_LS_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'GenericAzureSQLDB_LS'"
-		},
-		"azure_sql_db_ls_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'azure_sql_db_ls'"
-		},
-		"AzureSqlDatabaseMPE_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'AzureSqlDatabaseMPE'"
-		},
 		"AzureSqlDatabase_LS_Test_2_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'AzureSqlDatabase_LS_Test_2'"
@@ -34,6 +22,14 @@
 		"AzureSqlDatabase_LS_test_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'AzureSqlDatabase_LS_test'"
+		},
+		"GenericAzureSQLDB_LS_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'GenericAzureSQLDB_LS'"
+		},
+		"azure_sql_db_ls_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'azure_sql_db_ls'"
 		},
 		"ADLSg2_LS_properties_typeProperties_url": {
 			"type": "string",
@@ -50,6 +46,34 @@
 		"AdventureWorksSQLDB_LS_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "apon00"
+		},
+		"AzureKeyVault1_LS_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://DemoKeyVault1apon.vault.azure.net/"
+		},
+		"AzureSqlDatabase_LS_Test_2_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "apontraining.database.windows.net"
+		},
+		"AzureSqlDatabase_LS_Test_2_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "AdventureWorks"
+		},
+		"AzureSqlDatabase_LS_Test_2_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "apondas00"
+		},
+		"AzureSqlDatabase_LS_test_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "apontraining.database.windows.net"
+		},
+		"AzureSqlDatabase_LS_test_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "AdventureWorks"
+		},
+		"AzureSqlDatabase_LS_test_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "apondas00"
 		},
 		"GenericAzureSQLDB_LS_properties_typeProperties_server": {
 			"type": "string",
@@ -75,6 +99,10 @@
 			"type": "string",
 			"defaultValue": "apon00"
 		},
+		"AzureDataLakeStorage1_LS_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://datalakeapondas007890.dfs.core.windows.net/"
+		},
 		"AzureSqlDatabase856_properties_privateLinkResourceId": {
 			"type": "string",
 			"defaultValue": "/subscriptions/ea35098f-3915-43e2-b0c1-22aae608551f/resourceGroups/azurefundamentals/providers/Microsoft.Sql/servers/apontraining"
@@ -82,48 +110,19 @@
 		"AzureSqlDatabase856_properties_groupId": {
 			"type": "string",
 			"defaultValue": "sqlServer"
-		},
-		"AzureSqlDatabaseMPE_properties_typeProperties_server": {
-			"type": "string",
-			"defaultValue": "apontraining.database.windows.net"
-		},
-		"AzureSqlDatabaseMPE_properties_typeProperties_database": {
-			"type": "string",
-			"defaultValue": "AdventureWorks"
-		},
-		"AzureSqlDatabaseMPE_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "apon00"
-		},
-		"AzureSqlDatabase_LS_Test_2_properties_typeProperties_server": {
-			"type": "string",
-			"defaultValue": "apontraining.database.windows.net"
-		},
-		"AzureSqlDatabase_LS_Test_2_properties_typeProperties_database": {
-			"type": "string",
-			"defaultValue": "AdventureWorks"
-		},
-		"AzureSqlDatabase_LS_Test_2_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "apondas00"
-		},
-		"AzureSqlDatabase_LS_test_properties_typeProperties_server": {
-			"type": "string",
-			"defaultValue": "apontraining.database.windows.net"
-		},
-		"AzureSqlDatabase_LS_test_properties_typeProperties_database": {
-			"type": "string",
-			"defaultValue": "AdventureWorks"
-		},
-		"AzureSqlDatabase_LS_test_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "apondas00"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/default')]",
+			"type": "Microsoft.DataFactory/factories/globalparameters",
+			"apiVersion": "2018-06-01",
+			"properties": {},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Test')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
@@ -262,6 +261,63 @@
 					"password": {
 						"type": "SecureString",
 						"value": "[parameters('AdventureWorksSQLDB_LS_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureKeyVault1_LS')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureKeyVault",
+				"typeProperties": {
+					"baseUrl": "[parameters('AzureKeyVault1_LS_properties_typeProperties_baseUrl')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabase_LS_Test_2')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('AzureSqlDatabase_LS_Test_2_properties_typeProperties_server')]",
+					"database": "[parameters('AzureSqlDatabase_LS_Test_2_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('AzureSqlDatabase_LS_Test_2_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('AzureSqlDatabase_LS_Test_2_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabase_LS_test')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('AzureSqlDatabase_LS_test_properties_typeProperties_server')]",
+					"database": "[parameters('AzureSqlDatabase_LS_test_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('AzureSqlDatabase_LS_test_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('AzureSqlDatabase_LS_test_password')]"
 					}
 				}
 			},
@@ -570,6 +626,29 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureDataLakeStorage1_LS')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('AzureDataLakeStorage1_LS_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "AzureKeyVault1_LS",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "new-datalake"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureKeyVault1_LS')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/ManagedVNetIR')]",
 			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
 			"apiVersion": "2018-06-01",
@@ -852,153 +931,6 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/GenericAzureSQLDB_DS')]",
 				"[concat(variables('factoryId'), '/datasets/GenericADLSg2CSV_DS')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Dynamic Pipeline1')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Get a list of tables to be processed",
-						"type": "Lookup",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "AzureSqlSource",
-								"sqlReaderQuery": "SELECT QUOTENAME(t.name) AS tableName, QUOTENAME(SCHEMA_NAME(t.schema_id)) AS schemaName FROM sys.tables AS t",
-								"queryTimeout": "02:00:00",
-								"partitionOption": "None"
-							},
-							"dataset": {
-								"referenceName": "azure_sql_db_ds",
-								"type": "DatasetReference",
-								"parameters": {
-									"serverName": {
-										"value": "@pipeline().parameters.serverName",
-										"type": "Expression"
-									},
-									"databaseName": {
-										"value": "@pipeline().parameters.databaseName",
-										"type": "Expression"
-									}
-								}
-							},
-							"firstRowOnly": false
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"parameters": {
-					"serverName": {
-						"type": "string",
-						"defaultValue": "apontraining.database.windows.net"
-					},
-					"databaseName": {
-						"type": "string",
-						"defaultValue": "AdventureWorks"
-					}
-				},
-				"annotations": [],
-				"lastPublishTime": "2026-07-28T05:49:37Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/azure_sql_db_ds')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabaseMPE')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureSqlDatabase",
-				"typeProperties": {
-					"server": "[parameters('AzureSqlDatabaseMPE_properties_typeProperties_server')]",
-					"database": "[parameters('AzureSqlDatabaseMPE_properties_typeProperties_database')]",
-					"encrypt": "mandatory",
-					"trustServerCertificate": false,
-					"authenticationType": "SQL",
-					"userName": "[parameters('AzureSqlDatabaseMPE_properties_typeProperties_userName')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('AzureSqlDatabaseMPE_password')]"
-					}
-				},
-				"connectVia": {
-					"referenceName": "ManagedVNetIR",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/ManagedVNetIR')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabase_LS_Test_2')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureSqlDatabase",
-				"typeProperties": {
-					"server": "[parameters('AzureSqlDatabase_LS_Test_2_properties_typeProperties_server')]",
-					"database": "[parameters('AzureSqlDatabase_LS_Test_2_properties_typeProperties_database')]",
-					"encrypt": "mandatory",
-					"trustServerCertificate": false,
-					"authenticationType": "SQL",
-					"userName": "[parameters('AzureSqlDatabase_LS_Test_2_properties_typeProperties_userName')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('AzureSqlDatabase_LS_Test_2_password')]"
-					}
-				},
-				"connectVia": {
-					"referenceName": "ManagedVNetIR",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/ManagedVNetIR')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabase_LS_test')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureSqlDatabase",
-				"typeProperties": {
-					"server": "[parameters('AzureSqlDatabase_LS_test_properties_typeProperties_server')]",
-					"database": "[parameters('AzureSqlDatabase_LS_test_properties_typeProperties_database')]",
-					"encrypt": "mandatory",
-					"trustServerCertificate": false,
-					"authenticationType": "SQL",
-					"userName": "[parameters('AzureSqlDatabase_LS_test_properties_typeProperties_userName')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('AzureSqlDatabase_LS_test_password')]"
-					}
-				},
-				"connectVia": {
-					"referenceName": "ManagedVNetIR",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/ManagedVNetIR')]"
 			]
 		}
 	]
